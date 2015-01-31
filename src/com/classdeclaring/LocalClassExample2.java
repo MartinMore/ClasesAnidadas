@@ -14,6 +14,7 @@ public class LocalClassExample2 {
             String formatNumber = null;
 
             public PhoneNumber(String numberPhone) {
+                
                 String currentNumber = numberPhone.replaceAll(regularExprecion, "");
                 if (currentNumber.length() == lengthPhone) 
                     formatNumber = currentNumber;
