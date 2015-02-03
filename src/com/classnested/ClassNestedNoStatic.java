@@ -3,10 +3,16 @@ package com.classnested;
 
 public class ClassNestedNoStatic {
     
-    private int campoA;
+    private static int campoA;
     
     // Clase Anidada NO ESTATICA
     class InnerClass {
+        int campoB;
+
+        public InnerClass() {
+            this.campoB = campoA;
+        }
+        
     }
 
     public int getCampoA() {

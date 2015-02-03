@@ -50,6 +50,52 @@ public class RedSocial {
         }
     }
 
+    // ENFOQUE 6:::
+    interface Predicate<Person> {
+
+        boolean test(Person t);
+    }
+
+    public static void printPersonsWithPredicate(List<Person> roster,
+            Predicate<Person> tester) {
+        for (Person p : roster) {
+            System.out.println(p);
+        }
+    }
+
+    // ENFOQUE 7:::
+    public static void printPersonWithPredicate(List<Person> roster,
+            Predicate<Person> tester) {
+        for (Person p : roster) {
+            if (tester.test(p)) {
+                System.out.println(p);
+            }
+        }
+    }
+
+    interface Consumer<Person> {
+
+        void accept(Person p);
+    }
+
+    // .....................
+    public static void processPersons(List<Person> roster,
+            Predicate<Person> tester, Consumer<Person> block) {
+        for (Person p : roster) {
+            if (tester.test(p)) {
+                block.accept(p);
+            }
+        }
+    }
+
+    // ENFOQUE 7... Ejemplo 2.
+//    public static void processPersonsWithFunction(List<Person> roster,
+//            Predicate<Person> tester,
+//            Function<Person, String> mapper,
+//            Consumer<String> block) {
+//
+//    }
+
     public static void main(String[] args) {
         ArrayList<Person> person = new ArrayList<>();
         person.add(new Person("More", 19, new Date(), Person.Sex.MALE, "maore_2332@hotmail.com"));
@@ -78,21 +124,49 @@ public class RedSocial {
         // ----------------------------------------------------------------------
         // ENFOQUE 4...
         // CLASE ANONIMA
-        printPersons(person, new CheckPerson() {
-            @Override
-            public boolean test(Person p) {
-                return p.getGender() == Person.Sex.MALE
-                        && p.getAge() >= 18
-                        && p.getAge() <= 25;
-            }
-        });
+//        printPersons(person, new CheckPerson() {
+//            @Override
+//            public boolean test(Person p) {
+//                return p.getGender() == Person.Sex.MALE
+//                        && p.getAge() >= 18
+//                        && p.getAge() <= 25;
+//            }
+//        });
+
         // ENFOQUE 5...
         // EXPRESION LAMBDA
-        printPersons(person, 
-                (Person p) -> p.getGender() == Person.Sex.MALE
-                && p.getAge() >= 18
-                && p.getAge() <= 25
-                );
+//        printPersons(person,
+//                (Person p) -> p.getGender() == Person.Sex.MALE
+//                && p.getAge() >= 18
+//                && p.getAge() <= 25
+//        );
+        // ENFOQUE 6...
+        // USO ESTANDAR FUNCIONAL
+        // INTERFACES CON EXPRESIONES LAMBDA
+//        printPersonsWithPredicate(person,
+//                p -> p.getGender() == Person.Sex.MALE
+//                && p.getAge() >= 18
+//                && p.getAge() <= 25
+//        );
+        // ENFOQUE 7...
+//        processPersons(
+//                person,
+//                p -> p.getGender() == Person.Sex.MALE
+//                && p.getAge() >= 18
+//                && p.getAge() <= 25,
+//                p -> p.printPerson()
+//        );
+        // recupera la direccion de correo de c/miembro
+        // que figura en person
+//        processPersonsWithFunction(person, p -> p.getGender() == Person.Sex.MALE
+//                && p.getAge() >= 18
+//                && p.getAge() <= 25,
+//                p -> p.getEmailAddress(),
+//                email -> System.out.println(email)
+//        );
         
+        
+        
+
     }
 }

@@ -32,6 +32,7 @@ public class AnonymousClassesHelloWorld {
             // Una clase anonima tiene acceso a los miembros
             // de su clase envolvente
             int numLocalAnonymous = numGlobal;
+            
             String name = "tout le monde";
             
             /**

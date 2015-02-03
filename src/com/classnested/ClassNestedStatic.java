@@ -3,9 +3,14 @@ package com.classnested;
 
 public class ClassNestedStatic {
     
+    private static int numA = 20;
     // Clase Anidada Estatica
     static class StaticNestedClass {
-        
+        int numB;
+
+        public StaticNestedClass() {
+            numB = numA;
+        }
     }
     
     /*
@@ -13,7 +18,9 @@ public class ClassNestedStatic {
         inner class
     */
     class InnerClass {
-        
+        // Invalido, solo constantes
+        // static int numZ = 20;
+        int numC = numA;
     }
     
     public static void main(String[] args) {
